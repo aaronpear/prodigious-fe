@@ -1,0 +1,36 @@
+#page-container {
+    width: 600px;
+    margin: auto;
+    padding-top: 20vh;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+h2 {
+    padding-bottom: 10px;
+}
+
+.d-grid {
+    padding-top: 15px;
+}
+
+.d-grid #login-button {
+    padding: 8px 0 8px 0;
+    margin: 0 160px 0 160px;
+}
+
+.row {
+    padding: 0 0 10px 0;
+}
+
+p {
+    padding-top: 40px;
+    padding-bottom: 0;
+    margin: 0;
+}
+
+#signup-button {
+    margin: 0 220px 0 220px;
+}
