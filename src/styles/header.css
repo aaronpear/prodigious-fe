@@ -1,0 +1,20 @@
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    margin: 10px 0px 10px 15px;
+}
+
+.links {
+    width: 600px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+}
+
+.link {
+    text-decoration: none;
+}
