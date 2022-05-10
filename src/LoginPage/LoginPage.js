@@ -1,7 +1,9 @@
 import { Button } from 'react-bootstrap';
+import { useLinkClickHandler } from 'react-router-dom';
 import '../styles/loginPage.css';
 
 const LoginPage = () => {
+    const redirectToSignup = useLinkClickHandler("/signup");
     return (
         <div id="page-container">
             <div id="main-container">
@@ -27,7 +29,7 @@ const LoginPage = () => {
                 </form>
 
                 <p>Don't have an account?</p>
-                <Button variant="outline-primary" size="sm" id="signup-button">
+                <Button variant="outline-primary" size="sm" id="signup-button" onClick={redirectToSignup}>
                     Sign Up Here!
                 </Button>
             </div>
