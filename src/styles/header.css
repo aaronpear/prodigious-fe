@@ -26,6 +26,7 @@ header {
 
 #login-button {
     background-color: #17b094;
+    border-color: #17b094;
 }
 
 #login-button:hover {
