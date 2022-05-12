@@ -1,6 +1,5 @@
 import { Button } from 'react-bootstrap';
 import { useLinkClickHandler } from 'react-router-dom';
-import '../styles/loginPage.css';
 
 const LoginPage = () => {
     const redirectToSignup = useLinkClickHandler("/signup");
@@ -22,7 +21,7 @@ const LoginPage = () => {
                         </div>
                     </div>
                     <div className="d-grid gap-2">
-                        <Button variant="primary" size="sm" type ="submit" id="login-button">
+                        <Button variant="primary" size="sm" type ="submit" id="form-button">
                             Login
                         </Button>
                     </div>

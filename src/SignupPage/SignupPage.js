@@ -1,6 +1,4 @@
 import { Button } from 'react-bootstrap';
-import '../styles/signupPage.css';
-
 
 const SignupPage = () => {
     return (
@@ -21,13 +19,13 @@ const SignupPage = () => {
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="input-password" class="col-sm-2 col-form-label">Confirm Password</label>
+                        <label for="input-password" class="col-sm-2 col-form-label" id="confirm-password-label">Confirm Password</label>
                         <div class="col-sm-10">
-                            <input type="password" class="form-control" id="input-password" placeholder="Password" />
+                            <input type="password" class="form-control" id="input-password" placeholder="Re-type Password" />
                         </div>
                     </div>
                     <div className="d-grid gap-2">
-                        <Button variant="primary" size="sm" type ="submit" id="login-button">
+                        <Button variant="primary" size="sm" type ="submit" id="form-button">
                             Create Account
                         </Button>
                     </div>

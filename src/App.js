@@ -7,6 +7,7 @@ import LoginPage from './LoginPage/LoginPage';
 import SignupPage from './SignupPage/SignupPage';
 import CollectionPage from './CollectionPage/CollectionPage';
 import DeckBuilder from './DeckBuilder/DeckBuilder';
+import './styles/credentialsForms.css';
 
 function App() {
   return (
