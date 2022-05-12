@@ -17,4 +17,17 @@ header {
 
 .link {
     text-decoration: none;
+    color: #17b094;
+}
+
+.link:hover {
+    color: #0a6b59;
+}
+
+#login-button {
+    background-color: #17b094;
+}
+
+#login-button:hover {
+    background-color: #0a6b59;
 }
