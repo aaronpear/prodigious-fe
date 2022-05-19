@@ -1,0 +1,26 @@
+.component-title {
+    text-align: center;
+}
+
+#card-catalog-container {
+    display: flex;
+}
+
+#card-window-container {
+    text-align: center;
+    width: 70%;
+}
+
+#card-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card {
+    margin: 0 10px 10px 10px;
+}
+
+#filter-container {
+    text-align: center;
+    width: 30%;
+}

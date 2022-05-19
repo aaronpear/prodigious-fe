@@ -17,9 +17,11 @@ const CardWindow = () => {
     return (
         <div>
             <h2>Card Window</h2>
-            {cardData.map((card) => {
-                return <Card cardName={card.name} imageUrl={card.imageUrl} />
-            })}
+            <div id="card-container">
+                {cardData.map((card) => {
+                    return <Card cardName={card.name} imageUrl={card.imageUrl} />
+                })}
+            </div>
         </div>
     );
 }
