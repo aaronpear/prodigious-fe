@@ -23,6 +23,7 @@ const FilterWindow = (props) => {
     // set cardData with previous API response
 
     // *Will need to cache searches/results in the future for performance improvements
+    const [sortState, setSortState] = useState('');
     const [searchForm, setSearchForm] = useState(searchFormTemplate);
     const [productIds, setProductIds] = useState([]);
 
@@ -30,12 +31,16 @@ const FilterWindow = (props) => {
         setSearchForm({...searchForm, "sort": event});
     }
 
+    const handleClick = (event) => {
+        setSortState(event.target.name);
+    }
+
     return (
         <div>
-            <h3>Filter</h3>
-            <DropdownButton id="dropdown-basic-button" onSelect={handleSelect} title="Sort Cards By">
+            <h3>Sorting By: {sortState}</h3>
+            <DropdownButton id="dropdown-basic-button" onSelect={handleSelect} title="Change Sort">
                 {searchManifest.sorting.map((item) => {
-                    return <Dropdown.Item eventKey={item.value}>{item.text}</Dropdown.Item>
+                    return <Dropdown.Item className='dropdown-item' name={item.text} eventKey={item.value} onClick={handleClick}>{item.text}</Dropdown.Item>
                 })}
             </DropdownButton>
         </div>
