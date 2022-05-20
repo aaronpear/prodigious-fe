@@ -2,6 +2,21 @@ import CardWindow from './CardWindow';
 import FilterWindow from './FilterWindow';
 import '../styles/cardCatalog.css';
 
+// Request Body Template:
+// {
+//     "sort": "string",
+//     "limit": 0,
+//     "offset": 0,
+//     "filters": [
+//       {
+//         "name": "string",
+//         "values": [
+//           "string"
+//         ]
+//       }
+//     ]
+//  }
+
 const CardCatalog = () => {
     return (
         <div>
