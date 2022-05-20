@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import searchManifest from './searchManifest.json';
+import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 const FilterWindow = (props) => {
     const setCardData = props.setCardData;
@@ -23,9 +25,16 @@ const FilterWindow = (props) => {
     // *Will need to cache searches/results in the future for performance improvements
     const [searchForm, setSearchForm] = useState(searchFormTemplate);
     const [productIds, setProductIds] = useState([]);
-
+    console.log(searchManifest);
     return (
-        <h3>Filter</h3>
+        <div>
+            <h3>Filter</h3>
+            <DropdownButton id="dropdown-basic-button" title="Sort Cards By">
+                {searchManifest.sorting.map((item) => {
+                    return <Dropdown.Item name="sort" value={item.value}>{item.text}</Dropdown.Item>
+                })}
+            </DropdownButton>
+        </div>
     )
 }
 
