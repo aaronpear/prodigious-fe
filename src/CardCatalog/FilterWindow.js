@@ -25,13 +25,17 @@ const FilterWindow = (props) => {
     // *Will need to cache searches/results in the future for performance improvements
     const [searchForm, setSearchForm] = useState(searchFormTemplate);
     const [productIds, setProductIds] = useState([]);
-    console.log(searchManifest);
+
+    const handleSelect = (event) => {
+        setSearchForm({...searchForm, "sort": event});
+    }
+
     return (
         <div>
             <h3>Filter</h3>
-            <DropdownButton id="dropdown-basic-button" title="Sort Cards By">
+            <DropdownButton id="dropdown-basic-button" onSelect={handleSelect} title="Sort Cards By">
                 {searchManifest.sorting.map((item) => {
-                    return <Dropdown.Item name="sort" value={item.value}>{item.text}</Dropdown.Item>
+                    return <Dropdown.Item eventKey={item.value}>{item.text}</Dropdown.Item>
                 })}
             </DropdownButton>
         </div>
