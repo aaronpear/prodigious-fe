@@ -23,7 +23,7 @@ const FilterWindow = (props) => {
     // set cardData with previous API response
 
     // *Will need to cache searches/results in the future for performance improvements
-    const [sortState, setSortState] = useState('');
+    const [sortState, setSortState] = useState('Default');
     const [searchForm, setSearchForm] = useState(searchFormTemplate);
     const [productIds, setProductIds] = useState([]);
 
