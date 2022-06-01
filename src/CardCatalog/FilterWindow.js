@@ -40,7 +40,7 @@ const FilterWindow = (props) => {
             <h3>Sorting By: {sortState}</h3>
             <DropdownButton id="dropdown-basic-button" onSelect={handleSelect} title="Change Sort">
                 {searchManifest.sorting.map((item) => {
-                    return <Dropdown.Item className='dropdown-item' name={item.text} eventKey={item.value} onClick={handleClick}>{item.text}</Dropdown.Item>
+                    return <Dropdown.Item key={searchManifest.sorting.indexOf(item)} className='dropdown-item' name={item.text} eventKey={item.value} onClick={handleClick}>{item.text}</Dropdown.Item>
                 })}
             </DropdownButton>
         </div>
