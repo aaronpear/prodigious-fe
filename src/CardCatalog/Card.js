@@ -1,8 +1,9 @@
+import '../styles/card.css';
+
 const Card = (props) => {
     return (
-        <div class="card">
-            <h3>{props.cardName}</h3>
-            <img src={props.imageUrl} alt={props.cardName} />
+        <div class="card-container">
+            <img className="card-img" src={props.imageUrl} alt={props.cardName} />
         </div>
     )
 };

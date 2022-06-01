@@ -16,11 +16,20 @@
     flex-wrap: wrap;
 }
 
-.card {
+.card-container {
     margin: 0 10px 10px 10px;
 }
 
 #filter-container {
     text-align: center;
     width: 30%;
+}
+
+#dropdown-basic-button {
+    background-color: #17b094;
+    border-color: #17b094;
+}
+
+.dropdown-item:active {
+    background-color: #17b094;
 }

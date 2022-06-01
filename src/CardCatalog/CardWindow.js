@@ -2,7 +2,9 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Card from "./Card";
 
-const CardWindow = () => {
+const CardWindow = (props) => {
+
+    // Need to refactor once search functionality is complete
     const [cardData, setCardData] = useState([]);
     useEffect(() => {
         axios.get('https://prodigious-be.herokuapp.com/tcgPlayer')
