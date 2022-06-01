@@ -8,7 +8,7 @@ const CardCatalog = () => {
 
     return (
         <div>
-            <h2 class="component-title">Card Catalog</h2>
+            <h2 className="component-title">Card Catalog</h2>
             <div id="card-catalog-container">
                 <div id="card-window-container">
                     <CardWindow cardData={cardData} />
