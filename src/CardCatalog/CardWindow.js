@@ -37,7 +37,7 @@ const CardWindow = (props) => {
                 {cardData.map((card) => {
                     return <Card 
                         key={card.productId} 
-                        cardName={card.name} 
+                        cardName={card.cleanName} 
                         imageUrl={card.imageUrl} 
                         data={card.extendedData}
                     />
