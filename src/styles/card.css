@@ -5,3 +5,8 @@
     width: auto;
     height: auto;
 }
+
+#card-popover p {
+    margin-bottom: 2px;
+    padding: 0;
+}
