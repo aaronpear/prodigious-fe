@@ -19,6 +19,12 @@
     justify-content: center;
 }
 
+#pagination-bar {
+    display: flex;
+    justify-content: center;
+    margin-top: 5px;
+}
+
 .card-container {
     margin: 0 10px 10px 10px;
 }
