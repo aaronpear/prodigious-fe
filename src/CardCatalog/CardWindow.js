@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Pagination } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 import Card from "./Card";
 
 const CardWindow = (props) => {
@@ -36,6 +37,21 @@ const CardWindow = (props) => {
         }
     }
 
+    const handlePageInput = (e) => {
+        if (e.target.value && typeof parseInt(e.target.value) === "number") {
+            if (parseInt(e.target.value) < 1) {
+                e.target.value = 1;
+                setDisplayOffset(0);
+            } else if (parseInt(e.target.value) > Math.ceil(totalResults / displayLimit)) {
+                e.target.value = Math.ceil(totalResults / displayLimit);
+                setDisplayOffset((Math.ceil(totalResults / displayLimit - 1)));
+            } else {
+                setDisplayOffset(e.target.value - 1);
+                console.log(e.target.value);    
+            }   
+        }
+    }
+
     return (
         <div>
             <h2>Card Window</h2>
@@ -53,10 +69,21 @@ const CardWindow = (props) => {
                 <Pagination>
                     <Pagination.First onClick={() => setDisplayOffset(0)}/>
                     <Pagination.Prev onClick={decreaseOffset} />
-                    <Pagination.Item>Page {displayOffset + 1} of {(Math.ceil(totalResults / displayLimit))}</Pagination.Item>
+                    <Pagination.Item id="page-counter">
+                        Page {displayOffset + 1} of {(Math.ceil(totalResults / displayLimit))}
+                    </Pagination.Item>
                     <Pagination.Next onClick={increaseOffset} />
                     <Pagination.Last onClick={() => setDisplayOffset(Math.ceil(totalResults / displayLimit) - 1)}/>
                 </Pagination>
+                <div id="page-input">
+                    <Form.Label>Go To Page:</Form.Label>
+                    <Form.Control
+                        size="sm"
+                        type="text"
+                        onChange={handlePageInput}
+                        id="page-number"
+                    />
+                </div>
             </div>
         </div>
     );
