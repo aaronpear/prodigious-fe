@@ -67,13 +67,13 @@ const CardWindow = (props) => {
             </div>
             <div id="pagination-bar">
                 <Pagination>
-                    <Pagination.First onClick={() => setDisplayOffset(0)}/>
-                    <Pagination.Prev onClick={decreaseOffset} />
-                    <Pagination.Item id="page-counter">
+                    <Pagination.First onClick={() => setDisplayOffset(0)} className="pagination-buttons" />
+                    <Pagination.Prev onClick={decreaseOffset} className="pagination-buttons" />
+                    <Pagination.Item id="page-counter" disabled={true}>
                         Page {displayOffset + 1} of {(Math.ceil(totalResults / displayLimit))}
                     </Pagination.Item>
-                    <Pagination.Next onClick={increaseOffset} />
-                    <Pagination.Last onClick={() => setDisplayOffset(Math.ceil(totalResults / displayLimit) - 1)}/>
+                    <Pagination.Next onClick={increaseOffset} className="pagination-buttons" />
+                    <Pagination.Last onClick={() => setDisplayOffset(Math.ceil(totalResults / displayLimit) - 1)} className="pagination-buttons" />
                 </Pagination>
                 <div id="page-input">
                     <Form.Label>Go To Page:</Form.Label>

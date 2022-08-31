@@ -27,9 +27,14 @@
     margin-top: 5px;
 }
 
+.pagination li a {
+    color:#17b094;
+}
+
 #page-counter {
     display: flex;
     align-items: center;
+    color: black;
 }
 
 #page-input {
