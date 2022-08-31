@@ -21,8 +21,31 @@
 
 #pagination-bar {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
     margin-top: 5px;
+}
+
+.pagination li a {
+    color:#17b094;
+}
+
+#page-counter {
+    display: flex;
+    align-items: center;
+    color: black;
+}
+
+#page-input {
+    display: flex;
+}
+
+#page-number {
+    width: 40px;
+    height: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .card-container {
