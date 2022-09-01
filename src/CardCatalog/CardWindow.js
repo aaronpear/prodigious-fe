@@ -38,18 +38,16 @@ const CardWindow = (props) => {
     }
 
     const handlePageInput = (e) => {
-        if (e.target.value && typeof parseInt(e.target.value) === "number") {
-            if (parseInt(e.target.value) < 1) {
-                e.target.value = 1;
-                setDisplayOffset(0);
-            } else if (parseInt(e.target.value) > Math.ceil(totalResults / displayLimit)) {
-                e.target.value = Math.ceil(totalResults / displayLimit);
-                setDisplayOffset((Math.ceil(totalResults / displayLimit - 1)));
-            } else {
-                setDisplayOffset(e.target.value - 1);
-                console.log(e.target.value);    
-            }   
-        }
+        // users cannot input non-existing page numbers
+        if (e.target.value < 1) {
+            e.target.value = 1;
+            setDisplayOffset(0);
+        } else if (e.target.value > Math.ceil(totalResults / displayLimit)) {
+            e.target.value = Math.ceil(totalResults / displayLimit);
+            setDisplayOffset((Math.ceil(totalResults / displayLimit - 1)));
+        } else {
+            setDisplayOffset(e.target.value - 1);
+        }   
     }
 
     return (
@@ -79,7 +77,7 @@ const CardWindow = (props) => {
                     <Form.Label>Go To Page:</Form.Label>
                     <Form.Control
                         size="sm"
-                        type="text"
+                        type="number"
                         onChange={handlePageInput}
                         id="page-number"
                     />
