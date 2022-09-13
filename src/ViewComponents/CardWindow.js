@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Pagination } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import Card from "./Card";
+import FilterWindow from "./FilterWindow";
 
 const CardWindow = (props) => {
 
@@ -51,38 +52,44 @@ const CardWindow = (props) => {
     }
 
     return (
-        <div>
-            <h2>Card Window</h2>
-            <div id="card-container">
-                {cardData.map((card) => {
-                    return <Card 
-                        key={card.productId} 
-                        cardName={card.cleanName} 
-                        imageUrl={card.imageUrl}
-                        data={card.extendedData}
-                    />
-                })}
-            </div>
-            <div id="pagination-bar">
-                <Pagination>
-                    <Pagination.First onClick={() => setDisplayOffset(0)} className="pagination-buttons" />
-                    <Pagination.Prev onClick={decreaseOffset} className="pagination-buttons" />
-                    <Pagination.Item id="page-counter" disabled={true}>
-                        Page {displayOffset + 1} of {(Math.ceil(totalResults / displayLimit))}
-                    </Pagination.Item>
-                    <Pagination.Next onClick={increaseOffset} className="pagination-buttons" />
-                    <Pagination.Last onClick={() => setDisplayOffset(Math.ceil(totalResults / displayLimit) - 1)} className="pagination-buttons" />
-                </Pagination>
-                <div id="page-input">
-                    <Form.Label>Go To Page:</Form.Label>
-                    <Form.Control
-                        size="sm"
-                        type="number"
-                        onChange={handlePageInput}
-                        id="page-number"
-                    />
+        <div id="card-view-container">
+            <div id="card-window-container">
+                <h2>Card Window</h2>
+                <div id="card-container">
+                    {cardData.map((card) => {
+                        return <Card 
+                            key={card.productId} 
+                            popoverKey={card.productId} 
+                            cardName={card.cleanName} 
+                            imageUrl={card.imageUrl}
+                            data={card.extendedData}
+                        />
+                    })}
+                </div>
+                <div id="pagination-bar">
+                    <Pagination>
+                        <Pagination.First onClick={() => setDisplayOffset(0)} className="pagination-buttons" />
+                        <Pagination.Prev onClick={decreaseOffset} className="pagination-buttons" />
+                        <Pagination.Item id="page-counter" disabled={true}>
+                            Page {displayOffset + 1} of {(Math.ceil(totalResults / displayLimit))}
+                        </Pagination.Item>
+                        <Pagination.Next onClick={increaseOffset} className="pagination-buttons" />
+                        <Pagination.Last onClick={() => setDisplayOffset(Math.ceil(totalResults / displayLimit) - 1)} className="pagination-buttons" />
+                    </Pagination>
+                    <div id="page-input">
+                        <Form.Label>Go To Page:</Form.Label>
+                        <Form.Control
+                            size="sm"
+                            type="number"
+                            onChange={handlePageInput}
+                            id="page-number"
+                        />
+                    </div>
                 </div>
             </div>
+            <div id="filter-container">
+                <FilterWindow setCardData={setCardData} />
+            </div>        
         </div>
     );
 }

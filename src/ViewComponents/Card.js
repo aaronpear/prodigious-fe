@@ -7,8 +7,8 @@ const Card = (props) => {
         <Popover id="card-popover">
             <Popover.Header as="h3"><b>{props.cardName}</b></Popover.Header>
             <Popover.Body>
-                {props.data.map(element => {
-                    return <p><b>{element.displayName}</b>: {element.value}</p>
+                {props.data.map(element => {                   
+                    return <p key={props.data.indexOf(element)}><b>{element.displayName}</b>: {element.value}</p>
                 })}
             </Popover.Body>
         </Popover>
