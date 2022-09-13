@@ -57,6 +57,7 @@ const CardWindow = (props) => {
                 {cardData.map((card) => {
                     return <Card 
                         key={card.productId} 
+                        popoverKey={card.productId} 
                         cardName={card.cleanName} 
                         imageUrl={card.imageUrl}
                         data={card.extendedData}
