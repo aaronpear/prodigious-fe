@@ -8,7 +8,11 @@
 
 #card-window-container {
     text-align: center;
-    width: 70%;
+    width: 80%;
+}
+
+#card-view-container {
+    display: flex;
 }
 
 #card-container {
@@ -54,7 +58,6 @@
 
 #filter-container {
     text-align: center;
-    width: 30%;
 }
 
 #dropdown-basic-button {
