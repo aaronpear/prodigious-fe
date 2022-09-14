@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import axios from "axios";
+import { useEffect, useState } from 'react';
 import searchManifest from './searchManifest.json';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 const FilterWindow = (props) => {
     const setCardData = props.setCardData;
+    const setTotalResults = props.setTotalResults;
+    const displayLimit = props.displayLimit;
+    const displayOffset = props.displayOffset;
+
     const searchFormTemplate = {
         "sort": "",
-        "limit": 0,
+        "limit": 50,
         "offset": 0,
         "filters": [
           {
@@ -26,6 +31,43 @@ const FilterWindow = (props) => {
     const [sortState, setSortState] = useState('Default');
     const [searchForm, setSearchForm] = useState(searchFormTemplate);
     const [productIds, setProductIds] = useState([]);
+
+    // useEffect(() => {
+    //     axios.get(`https://prodigious-be.herokuapp.com/tcgPlayer/${displayLimit}/${displayOffset}`)
+    //         .then((res) => {
+    //             setCardData(res.data.results);
+    //             setTotalResults(res.data.totalItems);
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })}
+    // , [displayLimit, displayOffset]);
+
+    useEffect(() => {
+        axios.post('https://prodigious-be.herokuapp.com/tcgPlayer/', searchForm)
+            .then((res) => {
+                setTotalResults(res.data.totalItems)
+                setProductIds(res.data.results);
+
+                let ids = ''
+                productIds.forEach(item => {
+                    ids += (item + ',')
+                })
+                ids = ids.slice(0, -1);
+
+                axios.get(`https://prodigious-be.herokuapp.com/tcgPlayer/${ids}`)
+                    .then((res_2) => {
+                        setCardData(res_2.data);
+                    })
+                    .catch((err_2) => {
+                        console.log(err_2);
+                    })
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, [])
+
 
     const handleSelect = (event) => {
         setSearchForm({...searchForm, "sort": event});
