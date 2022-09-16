@@ -1,12 +1,17 @@
-import { useState } from 'react';
+import axios from "axios";
+import { useEffect, useState } from 'react';
 import searchManifest from './searchManifest.json';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 const FilterWindow = (props) => {
     const setCardData = props.setCardData;
+    const setTotalResults = props.setTotalResults;
+    const displayLimit = props.displayLimit;
+    const displayOffset = props.displayOffset;
+
     const searchFormTemplate = {
         "sort": "",
-        "limit": 0,
+        "limit": 50,
         "offset": 0,
         "filters": [
           {
@@ -27,7 +32,47 @@ const FilterWindow = (props) => {
     const [searchForm, setSearchForm] = useState(searchFormTemplate);
     const [productIds, setProductIds] = useState([]);
 
+    // useEffect(() => {
+    //     axios.get(`https://prodigious-be.herokuapp.com/tcgPlayer/${displayLimit}/${displayOffset}`)
+    //         .then((res) => {
+    //             setCardData(res.data.results);
+    //             setTotalResults(res.data.totalItems);
+    //         })
+    //         .catch(err => {
+    //             console.log(err);
+    //         })}
+    // , [displayLimit, displayOffset]);
+
+    useEffect(() => {
+        axios.post('https://prodigious-be.herokuapp.com/tcgPlayer/', searchForm)
+            .then((res) => {
+                setTotalResults(res.data.totalItems)
+                setProductIds(res.data.results);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, [searchForm])
+
+    useEffect(() => {
+        let ids = ''
+        for (let i = productIds.length - 1; i >= 0; i--) {
+            ids += productIds[i] + ',';
+        }
+        ids = ids.slice(0, -1);
+
+        axios.get(`https://prodigious-be.herokuapp.com/tcgPlayer/${ids}`)
+            .then((res) => {
+                setCardData(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, [productIds])
+
+
     const handleSelect = (event) => {
+        console.log('selected', event);
         setSearchForm({...searchForm, "sort": event});
     }
 

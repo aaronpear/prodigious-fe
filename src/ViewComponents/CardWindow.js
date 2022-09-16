@@ -1,5 +1,4 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Pagination } from "react-bootstrap";
 import { Form } from "react-bootstrap";
 import Card from "./Card";
@@ -12,17 +11,6 @@ const CardWindow = (props) => {
     const [totalResults, setTotalResults] = useState(0);
     const [displayLimit, setDisplayLimit] = useState(50);
     const [displayOffset, setDisplayOffset] = useState(0);
-
-    useEffect(() => {
-        axios.get(`https://prodigious-be.herokuapp.com/tcgPlayer/${displayLimit}/${displayOffset}`)
-            .then((res) => {
-                setCardData(res.data.results);
-                setTotalResults(res.data.totalItems);
-            })
-            .catch(err => {
-                console.log(err);
-            })}
-    , [displayLimit, displayOffset]);
     
     const increaseOffset = () => {
         // only increase offset if there exists more items to retrieve
@@ -57,6 +45,7 @@ const CardWindow = (props) => {
                 <h2>Card Window</h2>
                 <div id="card-container">
                     {cardData.map((card) => {
+                        // console.log('rerendering card', card.cleanName);
                         return <Card 
                             key={card.productId} 
                             popoverKey={card.productId} 
@@ -88,7 +77,7 @@ const CardWindow = (props) => {
                 </div>
             </div>
             <div id="filter-container">
-                <FilterWindow setCardData={setCardData} />
+                <FilterWindow setCardData={setCardData} setTotalResults={setTotalResults} displayLimit={displayLimit} displayOffset={displayOffset} cardData={cardData} />
             </div>        
         </div>
     );
