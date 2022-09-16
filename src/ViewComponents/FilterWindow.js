@@ -15,8 +15,8 @@ const FilterWindow = (props) => {
         "offset": 0,
         "filters": [
           {
-            "name": "",
-            "values": []
+            "name": "CardType",
+            "values": ["Digi-Egg", "Digimon", "Tamer", "Option"]
           }
         ]
      }
@@ -46,7 +46,7 @@ const FilterWindow = (props) => {
     useEffect(() => {
         axios.post('https://prodigious-be.herokuapp.com/tcgPlayer/', searchForm)
             .then((res) => {
-                setTotalResults(res.data.totalItems)
+                setTotalResults(res.data.totalItems);
                 setProductIds(res.data.results);
             })
             .catch((err) => {
@@ -72,7 +72,6 @@ const FilterWindow = (props) => {
 
 
     const handleSelect = (event) => {
-        console.log('selected', event);
         setSearchForm({...searchForm, "sort": event});
     }
 

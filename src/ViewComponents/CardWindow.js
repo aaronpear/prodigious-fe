@@ -45,7 +45,6 @@ const CardWindow = (props) => {
                 <h2>Card Window</h2>
                 <div id="card-container">
                     {cardData.map((card) => {
-                        // console.log('rerendering card', card.cleanName);
                         return <Card 
                             key={card.productId} 
                             popoverKey={card.productId} 
@@ -77,7 +76,7 @@ const CardWindow = (props) => {
                 </div>
             </div>
             <div id="filter-container">
-                <FilterWindow setCardData={setCardData} setTotalResults={setTotalResults} displayLimit={displayLimit} displayOffset={displayOffset} cardData={cardData} />
+                <FilterWindow setCardData={setCardData} setTotalResults={setTotalResults} displayLimit={displayLimit} displayOffset={displayOffset} />
             </div>        
         </div>
     );
