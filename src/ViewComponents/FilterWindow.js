@@ -32,17 +32,7 @@ const FilterWindow = (props) => {
     const [searchForm, setSearchForm] = useState(searchFormTemplate);
     const [productIds, setProductIds] = useState([]);
 
-    // useEffect(() => {
-    //     axios.get(`https://prodigious-be.herokuapp.com/tcgPlayer/${displayLimit}/${displayOffset}`)
-    //         .then((res) => {
-    //             setCardData(res.data.results);
-    //             setTotalResults(res.data.totalItems);
-    //         })
-    //         .catch(err => {
-    //             console.log(err);
-    //         })}
-    // , [displayLimit, displayOffset]);
-
+    // any time our search form is updated, we retrieve a new list of productIds
     useEffect(() => {
         axios.post('https://prodigious-be.herokuapp.com/tcgPlayer/', searchForm)
             .then((res) => {
@@ -54,7 +44,9 @@ const FilterWindow = (props) => {
             })
     }, [searchForm])
 
+    // when we successfully update our current productIds, we then retrieve the corresponding card data
     useEffect(() => {
+        // converting productIds array to a string to be used in our API request
         let ids = ''
         for (let i = productIds.length - 1; i >= 0; i--) {
             ids += productIds[i] + ',';
@@ -70,7 +62,7 @@ const FilterWindow = (props) => {
             })
     }, [productIds])
 
-
+    // dropdown Sort selector helper functions
     const handleSelect = (event) => {
         setSearchForm({...searchForm, "sort": event});
     }
