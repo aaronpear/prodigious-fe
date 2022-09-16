@@ -48,28 +48,31 @@ const FilterWindow = (props) => {
             .then((res) => {
                 setTotalResults(res.data.totalItems)
                 setProductIds(res.data.results);
-
-                let ids = ''
-                productIds.forEach(item => {
-                    ids += (item + ',')
-                })
-                ids = ids.slice(0, -1);
-
-                axios.get(`https://prodigious-be.herokuapp.com/tcgPlayer/${ids}`)
-                    .then((res_2) => {
-                        setCardData(res_2.data);
-                    })
-                    .catch((err_2) => {
-                        console.log(err_2);
-                    })
             })
             .catch((err) => {
                 console.log(err);
             })
-    }, [])
+    }, [searchForm])
+
+    useEffect(() => {
+        let ids = ''
+        for (let i = productIds.length - 1; i >= 0; i--) {
+            ids += productIds[i] + ',';
+        }
+        ids = ids.slice(0, -1);
+
+        axios.get(`https://prodigious-be.herokuapp.com/tcgPlayer/${ids}`)
+            .then((res) => {
+                setCardData(res.data);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+    }, [productIds])
 
 
     const handleSelect = (event) => {
+        console.log('selected', event);
         setSearchForm({...searchForm, "sort": event});
     }
 
