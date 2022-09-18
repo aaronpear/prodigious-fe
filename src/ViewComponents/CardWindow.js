@@ -14,15 +14,15 @@ const CardWindow = (props) => {
     
     const increaseOffset = () => {
         // only increase offset if there exists more items to retrieve
-        if ((displayOffset + 1) * displayLimit < (totalResults)) {
-            setDisplayOffset(displayOffset + 1);
+        if ((displayOffset + displayLimit) < (totalResults)) {
+            setDisplayOffset(displayOffset + displayLimit);
         }
     }
 
     const decreaseOffset = () => {
         // do not decrease offset if we are at the beginning of the list
         if (displayOffset > 0) {
-            setDisplayOffset(displayOffset - 1);
+            setDisplayOffset(displayOffset - displayLimit);
         }
     }
 
@@ -33,7 +33,7 @@ const CardWindow = (props) => {
             setDisplayOffset(0);
         } else if (e.target.value > Math.ceil(totalResults / displayLimit)) {
             e.target.value = Math.ceil(totalResults / displayLimit);
-            setDisplayOffset((Math.ceil(totalResults / displayLimit - 1)));
+            setDisplayOffset((totalResults - displayLimit ));
         } else {
             setDisplayOffset(e.target.value - 1);
         }   
@@ -59,10 +59,10 @@ const CardWindow = (props) => {
                         <Pagination.First onClick={() => setDisplayOffset(0)} className="pagination-buttons" />
                         <Pagination.Prev onClick={decreaseOffset} className="pagination-buttons" />
                         <Pagination.Item id="page-counter" disabled={true}>
-                            Page {displayOffset + 1} of {(Math.ceil(totalResults / displayLimit))}
+                            Page {Math.ceil(displayOffset / displayLimit) + 1} of {(Math.ceil(totalResults / displayLimit))}
                         </Pagination.Item>
                         <Pagination.Next onClick={increaseOffset} className="pagination-buttons" />
-                        <Pagination.Last onClick={() => setDisplayOffset(Math.ceil(totalResults / displayLimit) - 1)} className="pagination-buttons" />
+                        <Pagination.Last onClick={() => setDisplayOffset((totalResults - displayLimit))} className="pagination-buttons" />
                     </Pagination>
                     <div id="page-input">
                         <Form.Label>Go To Page:</Form.Label>
