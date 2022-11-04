@@ -1,7 +1,6 @@
 import { NavLink, useLinkClickHandler } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import '../styles/header.css';
-import { getOverlayDirection } from "react-bootstrap/esm/helpers";
 
 const Header = () => {
     const handleClick = useLinkClickHandler("/login");
