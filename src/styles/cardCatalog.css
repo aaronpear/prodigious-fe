@@ -23,6 +23,16 @@
     justify-content: center;
 }
 
+.loading-placeholder {
+    display: flex;
+    align-self: center;
+}
+
+#loading-text {
+    margin-left: 10px;
+    color: grey;
+}
+
 #pagination-bar {
     display: flex;
     flex-direction: column;
