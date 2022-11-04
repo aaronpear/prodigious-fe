@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Pagination } from "react-bootstrap";
-import { Form } from "react-bootstrap";
+import { Form, Pagination, Spinner } from "react-bootstrap";
 import Card from "./Card";
 import FilterWindow from "./FilterWindow";
 
@@ -11,6 +10,7 @@ const CardWindow = (props) => {
     const [totalResults, setTotalResults] = useState(0);
     const [displayLimit, setDisplayLimit] = useState(50);
     const [displayOffset, setDisplayOffset] = useState(0);
+    const [isLoading, setIsLoading] = useState(false);
     
     const increaseOffset = () => {
         // only increase offset if there exists more items to retrieve
@@ -44,14 +44,19 @@ const CardWindow = (props) => {
             <div id="card-window-container">
                 <h2>Card Window</h2>
                 <div id="card-container">
-                    {cardData.map((card) => {
-                        return <Card 
-                            key={card.productId} 
-                            popoverKey={card.productId} 
-                            cardName={card.cleanName} 
-                            imageUrl={card.imageUrl}
-                            data={card.extendedData}
-                        />
+                    {isLoading ? 
+                        <div className="loading-placeholder">
+                            <Spinner animation="grow" />
+                            <h4 id="loading-text">Loading Cards...</h4>
+                        </div> :
+                        cardData.map((card) => {
+                            return <Card 
+                                key={card.productId} 
+                                popoverKey={card.productId} 
+                                cardName={card.cleanName} 
+                                imageUrl={card.imageUrl}
+                                data={card.extendedData}
+                            />
                     })}
                 </div>
                 <div id="pagination-bar">
@@ -76,7 +81,7 @@ const CardWindow = (props) => {
                 </div>
             </div>
             <div id="filter-container">
-                <FilterWindow setCardData={setCardData} setTotalResults={setTotalResults} displayLimit={displayLimit} displayOffset={displayOffset} />
+                <FilterWindow setCardData={setCardData} setTotalResults={setTotalResults} setIsLoading={setIsLoading} displayLimit={displayLimit} displayOffset={displayOffset} />
             </div>        
         </div>
     );

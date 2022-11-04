@@ -8,6 +8,7 @@ const FilterWindow = (props) => {
     const setTotalResults = props.setTotalResults;
     const displayLimit = props.displayLimit;
     const displayOffset = props.displayOffset;
+    const setIsLoading =  props.setIsLoading;
 
     const searchFormTemplate = {
         "sort": "A-Z",
@@ -32,19 +33,16 @@ const FilterWindow = (props) => {
     const [searchForm, setSearchForm] = useState(searchFormTemplate);
     const [productIds, setProductIds] = useState([]);
 
-    useEffect(() => {
-        console.log('display limit/offset changed', 'limit:', displayLimit, 'offset:', displayOffset);
-        setSearchForm({...searchForm, "limit": displayLimit, "offset": displayOffset})
-    }, [displayLimit, displayOffset])
-
     // any time our search form is updated, we retrieve a new list of productIds
     useEffect(() => {
         console.log('searchForm changed', searchForm);
+        setIsLoading(true);
         axios.post('https://prodigious-be.herokuapp.com/tcgPlayer/', searchForm)
             .then((res) => {
                 console.log('search form successfully submitted');
                 setTotalResults(res.data.totalItems);
                 setProductIds(res.data.results);
+                setIsLoading(false);
             })
             .catch((err) => {
                 console.log(err);
@@ -70,6 +68,11 @@ const FilterWindow = (props) => {
                 console.log(err);
             })
     }, [productIds])
+
+    useEffect(() => {
+        console.log('display limit/offset changed', 'limit:', displayLimit, 'offset:', displayOffset);
+        setSearchForm({...searchForm, "limit": displayLimit, "offset": displayOffset})
+    }, [displayLimit, displayOffset])
 
     // dropdown Sort selector helper functions
     const handleSelect = (event) => {
