@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Form, Pagination, Spinner } from "react-bootstrap";
-import Card from "./Card";
+import DigimonCard from "./DigimonCard";
 import FilterWindow from "./FilterWindow";
 
 const CardWindow = (props) => {
@@ -50,7 +50,7 @@ const CardWindow = (props) => {
                             <h4 id="loading-text">Loading Cards...</h4>
                         </div> :
                         cardData.map((card) => {
-                            return <Card 
+                            return <DigimonCard 
                                 key={card.productId} 
                                 popoverKey={card.productId} 
                                 cardName={card.cleanName} 
