@@ -53,11 +53,25 @@
 
 #page-input {
     display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
 }
 
 #page-number {
     width: 55px;
     height: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.form-label {
+    margin-left: 5px;
+}
+
+.form-select {
+    height: 33px;
+    width: 72px;
     margin-left: 5px;
     margin-right: 5px;
 }

@@ -77,6 +77,13 @@ const CardWindow = (props) => {
                             onChange={handlePageInput}
                             id="page-number"
                         />
+                        <Form.Label>Cards Displayed Per Page:</Form.Label>
+                        <Form.Select size="sm" onChange={(e) => setDisplayLimit(e.target.value)}>
+                            <option eventKey="1" value={25}>25</option>
+                            <option eventKey="2" value={50} selected>50</option>
+                            <option eventKey="3" value={75}>75</option>
+                            <option eventKey="4" value={100}>100</option>
+                        </Form.Select>
                     </div>
                 </div>
             </div>
