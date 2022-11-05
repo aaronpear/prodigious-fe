@@ -10,3 +10,9 @@
     margin-bottom: 2px;
     padding: 0;
 }
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

@@ -17,20 +17,16 @@ const DigimonCard = (props) => {
         </Popover>
     );
 
+    const name = data.find(element => element.displayName === 'Number');
+
     return (
         <div className="card-container">
             <OverlayTrigger placement="right" overlay={popover}>
                 {imageRetrieved ? <img className="card-img" src={imageUrl} alt={cardName} onError={() => setImageRetrieved(false)} /> : 
-                <Card style={{ width: '18rem' }}>
+                <Card style={{ width: '200px', height: '279px' }}>
                     <Card.Body>
                         <Card.Title>{cardName}</Card.Title>
-                        <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle>
-                        <Card.Text>
-                            Some quick example text to build on the card title and make up the
-                            bulk of the card's content.
-                        </Card.Text>
-                        <Card.Link href="#">Card Link</Card.Link>
-                        <Card.Link href="#">Another Link</Card.Link>
+                        <Card.Subtitle className="mb-2 text-muted">{name.value}</Card.Subtitle>
                     </Card.Body>
                 </Card>}
             </OverlayTrigger>
