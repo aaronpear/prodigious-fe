@@ -4,11 +4,7 @@ import searchManifest from './searchManifest.json';
 import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 const FilterWindow = (props) => {
-    const setCardData = props.setCardData;
-    const setTotalResults = props.setTotalResults;
-    const displayLimit = props.displayLimit;
-    const displayOffset = props.displayOffset;
-    const setIsLoading =  props.setIsLoading;
+    const { setCardData, setTotalResults, setIsLoading, displayLimit, displayOffset } = props;
 
     const searchFormTemplate = {
         "sort": "A-Z",
